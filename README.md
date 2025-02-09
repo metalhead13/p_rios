@@ -1,23 +1,27 @@
-Proyecto Ríos del Desierto
 
-Objetivo **consultar la información de un cliente** ingresando únicamente su número de documento y, además, **generar un reporte en Excel** para la fidelización de los clientes que hayan superado un monto específico de compras en el último mes.
+---
+# Proyecto Ríos del Desierto
+---
+---
+
+El objetivo del presente proyecto es **consultar la información de un cliente** ingresando únicamente su número de documento y, adicionalmente, **generar un reporte en Excel** para la fidelización de los clientes que hayan superado un monto específico de compras durante el último mes.
 
 ## Contenido
 
-- [Descripción General](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#descripci%C3%B3n-general)
-- [Requerimientos](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#requerimientos)
-- [Estructura del Proyecto](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#estructura-del-proyecto)
-- [Instalación y Configuración](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#instalaci%C3%B3n-y-configuraci%C3%B3n)
-    - [Creación del Entorno Virtual](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#creaci%C3%B3n-del-entorno-virtual)
-    - [Instalación de Dependencias](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#instalaci%C3%B3n-de-dependencias)
-    - [Configuración de la Base de Datos](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#configuraci%C3%B3n-de-la-base-de-datos)
-- [Ejecución en Desarrollo](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#ejecuci%C3%B3n-en-desarrollo)
-- [Modelos y Base de Datos](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#modelos-y-base-de-datos)
-- [Endpoints Principales](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#endpoints-principales)
-- [Frontend (Formulario de Búsqueda)](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#frontend-formulario-de-b%C3%BAsqueda)
-- [Reporte de Fidelización](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#reporte-de-fidelizaci%C3%B3n)
-- [Cómo Contribuir](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#c%C3%B3mo-contribuir)
-- [Licencia](https://chatgpt.com/c/67a81106-96d4-8003-b163-1e9d0042be2a#licencia)
+- Descripción General
+- Requerimientos
+- Estructura del Proyecto
+- Instalación y Configuración
+    - Creación del Entorno Virtual
+    - Instalación de Dependencias
+    - Configuración de la Base de Datos
+- Ejecución en Desarrollo
+- Modelos y Base de Datos
+- Endpoints Principales
+- Frontend (Formulario de Búsqueda)
+- Reporte de Fidelización
+- Cómo Contribuir
+- Licencia
 
 ---
 
@@ -25,33 +29,33 @@ Objetivo **consultar la información de un cliente** ingresando únicamente su n
 
 La aplicación ha sido desarrollada en **Python/Django** y permite llevar a cabo las siguientes acciones:
 
-1. **Buscar** información de un cliente (por número de documento) mediante una **API**.
-2. **Mostrar** esa información en un **frontend** web sencillo.
-3. **Exportar** la información del cliente en un archivo CSV (o formato similar).
-4. **Generar** un reporte en Excel que muestre a los clientes con un monto de compras mayor a 5’000.000 COP en el último mes.
+1. **Consultar** la información de un cliente por medio de una **API**, proporcionando su número de documento.
+2. **Visualizar** la información obtenida en un **frontend** web de estructura sencilla.
+3. **Exportar** la información del cliente en un archivo CSV u otro formato similar.
+4. **Generar** un reporte en Excel que contenga a los clientes con un monto de compras superior a **5’000.000 COP** durante el último mes.
 
 ---
 
 ## Requerimientos
 
 - Python **3.10+**
-- Django 
+- Django
 - Django REST Framework
 - Pandas y openpyxl
-- SQLite 
+- SQLite
 
 ---
 
 ## Estructura del Proyecto
 
 ```
-p_rios/                  <-- Raíz 
+p_rios/                  <-- Raíz del proyecto
 ├── rios_del_desierto/   <-- Proyecto Django
 │   ├── manage.py
 │   ├── rios_del_desierto/
 │   │   ├── settings.py
 │   │   ├── urls.py
-│   │   
+│   │
 │   └── clientes/        <-- Aplicación principal
 │       ├── admin.py
 │       ├── apps.py
@@ -73,7 +77,7 @@ p_rios/                  <-- Raíz
 
 ### Creación del Entorno Virtual
 
-1. Abra una terminal en la carpeta raíz del proyecto (`p_rios`).
+1. Abra una terminal en la carpeta raíz del proyecto (por ejemplo, `p_rios`).
     
 2. Cree el entorno virtual:
     
@@ -83,13 +87,13 @@ p_rios/                  <-- Raíz
     
 3. Active el entorno virtual:
     
-    - Windows:
+    - **Windows:**
         
         ```bash
         venv\Scripts\activate
         ```
         
-    - Linux/Mac:
+    - **Linux/Mac:**
         
         ```bash
         source venv/bin/activate
@@ -98,36 +102,53 @@ p_rios/                  <-- Raíz
 
 ### Instalación de Dependencias
 
-Con el entorno virtual activo, instalre las dependencias ejecutando el siguiente comando:
+Con el entorno virtual activo, instale las dependencias ejecutando el siguiente comando:
 
 ```bash
 pip install -r requirements.txt
 ```
 
+En caso de no contar con un archivo `requirements.txt`, instale manualmente las dependencias requeridas:
+
+```bash
+pip install django djangorestframework pandas openpyxl
+```
+
+Posteriormente, guarde las dependencias ejecutando:
+
+```bash
+pip freeze > requirements.txt
+```
 
 ### Configuración de la Base de Datos
 
-El proyecto está configurado para utilizar **SQLite** por defecto (en `settings.py`).  
-Si se requiere emplear otra base de datos (por ejemplo, PostgreSQL o MySQL), ajuste la sección `DATABASES` en `rios_del_desierto/settings.py`.
+El proyecto está configurado por defecto para utilizar **SQLite**. Si se requiere emplear otra base de datos (por ejemplo, PostgreSQL o MySQL), es necesario ajustar la sección `DATABASES` en el archivo `rios_del_desierto/settings.py`.
 
 ---
 
 ## Ejecución en Desarrollo
 
-1. Ejecute las migraciones:
+1. Ejecute las migraciones correspondientes:
     
     ```bash
     python manage.py makemigrations
     python manage.py migrate
     ```
     
-2. Ejecute el servidor de desarrollo:
+2. (Opcional) Cree un superusuario para acceder al panel de administración:
+    
+    ```bash
+    python manage.py createsuperuser
+    ```
+    
+3. Inicie el servidor de desarrollo:
     
     ```bash
     python manage.py runserver
     ```
     
-4. Abra [http://127.0.0.1:8000](http://127.0.0.1:8000/) en su navegador.
+4. Abra [http://127.0.0.1:8000](http://127.0.0.1:8000/) en su navegador web.
+    
 
 ---
 
@@ -135,9 +156,9 @@ Si se requiere emplear otra base de datos (por ejemplo, PostgreSQL o MySQL), aju
 
 El proyecto incluye varios modelos básicos definidos en `clientes/models.py`. Algunos de ellos son:
 
-- **TipoDocumento**: para almacenar el tipo de document.
-- **Cliente**: almacena la información principal del cliente .
-- **Compra**: registra cada compra hecha por un cliente, incluyendo `fecha_compra` y `monto`.
+- **TipoDocumento:** Almacena el tipo de documento (NIT, Cédula, Pasaporte, entre otros).
+- **Cliente:** Contiene la información principal del cliente, como nombre, apellido y correo electrónico.
+- **Compra:** Registra cada compra realizada por un cliente, incluyendo la `fecha_compra` y el `monto` correspondiente.
 
 ---
 
@@ -149,34 +170,34 @@ El proyecto incluye varios modelos básicos definidos en `clientes/models.py`. A
     /api/clientes/<numero_documento>/
     ```
     
-
+    - Retorna un JSON con la información del cliente, que incluye nombre, apellido, correo electrónico y teléfono.
 2. **Reporte de Fidelización** (GET):
     
     ```
     /api/reporte_fidelizacion/
     ```
     
-    - Genera y descarga un archivo Excel `.xlsx` con los clientes que superaron **5.000.000** de COP en el último mes.
+    - Genera y descarga un archivo en formato Excel (`.xlsx`) con los clientes que superaron **5’000.000 COP** en compras durante el último mes.
 
 ---
 
-## Frontend
+## Frontend (Formulario de Búsqueda)
 
-El archivo `clientes/templates/index.html` contiene un **formulario** minimalista que permite:
+El archivo `clientes/templates/index.html` contiene un formulario básico que permite:
 
-- Selecciona el **tipo de documento** (NIT, Cédula o Pasaporte).
-- Ingresa el **número de documento**.
-- Al enviar, se realiza una **petición fetch** al endpoint `/api/clientes/<numero_documento>/`.
-- Muestra la información en pantalla 
-- Permite **exportar** los datos en formato CSV.
+- Seleccionar el tipo de documento (NIT, Cédula o Pasaporte).
+- Ingresar el número de documento.
+- Realizar una petición `fetch` al endpoint `/api/clientes/<numero_documento>/`.
+- Mostrar la información obtenida en pantalla.
+- Exportar los datos en formato CSV.
 
 Ejemplo de uso:
 
-1. Acceder a [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
-2. Seleccionar `Cedula` y escribir `123456789`.
-3. Hacer clic en “Buscar”.
-4. Ver la información del cliente (si existe).
-5. Hacer clic en “Exportar Datos” para descargar un `.csv`.
+1. Acceda a [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+2. Seleccione el tipo de documento (`Cédula`) e ingrese un número (`123456789`).
+3. Haga clic en “Buscar”.
+4. Visualice la información del cliente, en caso de que exista.
+5. Haga clic en “Exportar Datos” para descargar un archivo en formato CSV.
 
 ---
 
@@ -184,11 +205,11 @@ Ejemplo de uso:
 
 Para los clientes que hayan realizado compras superiores a **5’000.000 COP** en los últimos **30 días**, el sistema genera un reporte en formato Excel. El procedimiento es el siguiente:
 
-1. El backend en `clientes/views.py` utiliza **Pandas** para:
+1. El backend, definido en `clientes/views.py`, emplea la librería **Pandas** para:
     
-    - Filtrar las compras de los últimos 30 días.
+    - Filtrar las compras realizadas en los últimos 30 días.
     - Sumar los montos por cliente.
-    - Filtrar quienes superen 5’000.000.
+    - Identificar aquellos que superen el límite establecido.
     - Crear un archivo Excel y retornarlo en la respuesta HTTP.
 2. Acceda a la ruta:
     
@@ -199,10 +220,18 @@ Para los clientes que hayan realizado compras superiores a **5’000.000 COP** e
     El navegador descargará el archivo `reporte_fidelizacion.xlsx`.
     
 
+---
 
+## Cómo Contribuir
+
+1. Realice un **fork** del repositorio.
+2. Cree una rama para su funcionalidad (`git checkout -b feature/nueva-funcionalidad`).
+3. Aplique sus cambios y realice los commits correspondientes.
+4. Realice un push a su rama en el repositorio fork.
+5. Cree un **Pull Request**, detallando los cambios realizados.
 
 ---
 
 ## Licencia
 
-Este proyecto ha sido desarrollado por  [metalhead13 (Alejandro A.)](https://github.com/metalhead13)  exclusivamente para Falabella Colombia y el grupo Cinte. 
+Este proyecto ha sido desarrollado por [metalhead13 (Alejandro A.)](https://github.com/metalhead13) exclusivamente para Falabella Colombia y el grupo Cinte.
