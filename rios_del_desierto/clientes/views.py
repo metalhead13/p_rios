@@ -4,6 +4,12 @@ from rest_framework.response import Response
 from .models import Cliente
 from .serializers import ClienteSerializer
 
+from django.shortcuts import render 
+
+def index(request):
+        return render(request, 'index.html')
+
+
 @api_view(['GET'])
 def buscar_cliente_por_documento(request, numero_documento):
     try:
