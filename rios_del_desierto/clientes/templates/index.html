@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Clientes</title>
+</head>
+<body>
+    <h1>Buscar información del cliente</h1>
+    <form id="form-buscar">
+        <label for="tipoDocumento">Tipo de Documento:</label>
+        <select id="tipoDocumento" name="tipoDocumento">
+            <option value="NIT">NIT</option>
+            <option value="Cedula">Cédula</option>
+            <option value="Pasaporte">Pasaporte</option>
+        </select>
+        <br><br>
+        <label for="numeroDocumento">Número de Documento:</label>
+        <input type="text" id="numeroDocumento" name="numeroDocumento" required/>
+        <br><br>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <hr>
+
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById('form-buscar').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const numeroDocumento = document.getElementById('numeroDocumento').value;
+            // Asumimos que no filtramos por tipoDocumento en este ejemplo 
+            // (si fuera necesario, habría que buscar combinando el tipo).
+            const url = `/api/clientes/${numeroDocumento}/`; 
+            
+            try {
+                let response = await fetch(url);
+                if (!response.ok) {
+                    // Error en la consulta
+                    let errorData = await response.json();
+                    document.getElementById('resultado').innerText = 
+                        'Error: ' + (errorData.error || response.statusText);
+                } else {
+                    let data = await response.json();
+                    document.getElementById('resultado').innerHTML = `
+                        <p><strong>Documento:</strong> ${data.numero_documento}</p>
+                        <p><strong>Nombre:</strong> ${data.nombre} ${data.apellido}</p>
+                        <p><strong>Correo:</strong> ${data.correo}</p>
+                        <p><strong>Teléfono:</strong> ${data.telefono}</p>
+                        <button id="btnExportar">Exportar Datos</button>
+                    `;
+                    // Agregar manejador para exportar
+                    document.getElementById('btnExportar').addEventListener('click', () => {
+                        exportarDatos(data);
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById('resultado').innerText = 
+                    'Ha ocurrido un error inesperado.';
+            }
+        });
+
+        // Ejemplo de exportación a CSV
+        function exportarDatos(data) {
+            // Construir contenido CSV
+            // cabeceras
+            let csvContent = "numero_documento,nombre,apellido,correo,telefono\n";
+            // valores
+            csvContent += `${data.numero_documento},${data.nombre},${data.apellido},${data.correo},${data.telefono}\n`;
+
+            // Descargar archivo
+            let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            let link = document.createElement('a');
+            let url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `cliente_${data.numero_documento}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
